@@ -3,10 +3,13 @@ from socket import *
 def smtp_client(port=1025, mailserver='127.0.0.1'):
     msg = "\r\n My message"
     
+    mailserver = '127.0.0.1'
+    port = 1025
+    
     clientSocket = socket(AF_INET, SOCK_STREAM)
     clientSocket.connect((mailserver, port))
 
-    heloCommand = 'Helo Nasser\r\n'
+    heloCommand = 'Helo\r\n'
     clientSocket.send(heloCommand.encode())
 
     mailfromCommand = 'MAIL FROM:<nasser.fattah@gmail.com>\r\n'
