@@ -17,19 +17,24 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     mailfromCommand = 'MAIL FROM:<nasser.fattah@gmail.com>\r\n'
     clientSocket.send(mailfromCommand.encode())
+    recv1 = clientSocket.recv(1024).decode()
 
     rcpttoCommand = 'RCPT To:<nasser.fattah@gmail.com>\r\n'
     clientSocket.send(rcpttoCommand.encode())
+    recv1 = clientSocket.recv(1024).decode()
 
     dataCommand = 'Data\r\n'
     clientSocket.send(dataCommand.encode())
+    recv1 = clientSocket.recv(1024).decode()
 
     clientSocket.send(msg.encode())
-
+    
     clientSocket.send(endmsg.encode())
+    recv1 = clientSocket.recv(1024).decode()
 
     quitCommand = 'QUIT\r\n'
     clientSocket.send(quitCommand.encode())
+    recv1 = clientSocket.recv(1024).decode()
 
 if __name__ == '__main__':
     smtp_client(1025, '127.0.0.1')
