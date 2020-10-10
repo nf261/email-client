@@ -9,8 +9,10 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientSocket = socket(AF_INET, SOCK_STREAM)
     clientSocket.connect((mailserver, port))
 
-    heloCommand = 'Helo\r\n'
+    heloCommand = 'HELO Alice\r\n'
     clientSocket.send(heloCommand.encode())
+    recv1 = clientSocket.recv(1024).decode()
+
 
     mailfromCommand = 'MAIL FROM:<nasser.fattah@gmail.com>\r\n'
     clientSocket.send(mailfromCommand.encode())
