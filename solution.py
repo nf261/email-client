@@ -18,10 +18,10 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     mailfromCommand = 'MAIL FROM:<nasser.fattah@gmail.com>\r\n'
     clientSocket.send(mailfromCommand.encode())
 
-    # rcpttoCommand = 'RCPT TO:<nasser.fattah@gmail.com>\r\n'
-    # clientSocket.send(rcpttoCommand.encode())
+    rcpttoCommand = 'RCPT To:<nasser.fattah@gmail.com>\r\n'
+    clientSocket.send(rcpttoCommand.encode())
 
-    dataCommand = 'DATA\r\n'
+    dataCommand = 'Data\r\n'
     clientSocket.send(dataCommand.encode())
 
     clientSocket.send(msg.encode())
