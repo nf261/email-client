@@ -9,6 +9,11 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     
     clientSocket = socket(AF_INET, SOCK_STREAM)
     clientSocket.connect((mailserver, port))
+    
+    recv = clientSocket.recv(1024).decode()
+    # print(recv)
+    if recv[:3] != '220':
+       print('220 reply not received from server.')
 
     heloCommand = 'HELO Alice\r\n'
     clientSocket.send(heloCommand.encode())
@@ -16,11 +21,11 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     
     mailfromCommand = 'MAIL FROM:<nasser.fattah@gmail.com>\r\n'
     clientSocket.send(mailfromCommand.encode())
-    recv1 = clientSocket.recv(1024).decode()
+    # recv2 = clientSocket.recv(1024).decode()
     
     rcpttoCommand = 'RCPT TO:<nasser.fattah@gmail.com>\r\n'
     clientSocket.send(rcpttoCommand.encode())
-    recv1 = clientSocket.recv(1024).decode()
+    # recv1 = clientSocket.recv(1024).decode()
     
     dataCommand = 'Data\r\n'
     clientSocket.send(dataCommand.encode())
